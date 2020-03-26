@@ -51,7 +51,6 @@ public class BookServiceImpl implements BookService {
         @Override
         public Book saveBook(Book book) {
             Book savedBook = bookRepository.save(book);
-            log.info("Saving book '"+savedBook.getTitle()+"' into database");
             return savedBook;
         }
 

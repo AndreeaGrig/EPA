@@ -34,7 +34,7 @@ public class BookController {
          List<Book> rec = new ArrayList<>(books);
          List<Book> sortedBooks = books.stream()
                 .sorted(Comparator.comparing(Book::getNoOfFavs).reversed())
-                .collect(Collectors.toList()).subList(0,6);
+                .collect(Collectors.toList());//.subList(0,6);
          return sortedBooks;
     }
 
