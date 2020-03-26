@@ -36,7 +36,8 @@ public class PDFStoreServiceImpl implements PDFStoreService{
             Path path = Paths.get(UPLOADED_FOLDER + bookId + ".pdf");
             Files.write(path, bytes);
             Book book = bookRepository.findById(bookId).get();
-            log.info("Saving pdf file for book '"+book.getTitle()+"'");
+            //TODO:
+//            log.info("Saving pdf file for book '"+book.getTitle()+"'");
             book.setUrlPdf(bookId + ".pdf");
             bookRepository.save(book);
 

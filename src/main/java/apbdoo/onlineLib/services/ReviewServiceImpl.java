@@ -19,7 +19,8 @@ public class ReviewServiceImpl implements ReviewService {
     @TrackExecutionTime
     @Override
     public Review saveReview(Review review) {
-        log.info("Saving "+review.getUser().getUsername()+"'s review for book "+review.getBook().getTitle());
+        //TODO:
+//        log.info("Saving "+review.getUser().getUsername()+"'s review for book "+review.getBook().getTitle());
         Review savedReview = reviewRepository.save(review);
         return savedReview;
     }
@@ -27,7 +28,8 @@ public class ReviewServiceImpl implements ReviewService {
     @TrackExecutionTime
     @Override
     public void deleteById(Long id) {
-        log.info("Deleting review with id: "+id);
+        //TODO:
+//        log.info("Deleting review with id: "+id);
         reviewRepository.deleteById(id);
     }
 
@@ -36,9 +38,11 @@ public class ReviewServiceImpl implements ReviewService {
     public Review findById(Long id) {
 
         Optional<Review> reviewOptional = reviewRepository.findById(id);
-        log.info("Retrieving review with id: "+id);
+        //TODO:
+//        log.info("Retrieving review with id: "+id);
         if (!reviewOptional.isPresent()) {
-            log.error("Review with id "+id+" not found!");
+            //TODO:
+//            log.error("Review with id "+id+" not found!");
             throw new RuntimeException("Review not found!");
         }
 

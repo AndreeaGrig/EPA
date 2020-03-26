@@ -22,7 +22,8 @@ public class FavouritesServiceImpl implements FavouritesService {
     @Override
     public Favourites saveFavourites(Favourites favourite) {
         List<Favourites> favs = favouritesRepository.findByBookAndUser(favourite.getBookFav(), favourite.getUserFav());
-        log.info("Saving book "+favourite.getBookFav().getTitle()+" in "+favourite.getUserFav().getUsername()+"'s list of favourites");
+        //TODO:
+//        log.info("Saving book "+favourite.getBookFav().getTitle()+" in "+favourite.getUserFav().getUsername()+"'s list of favourites");
         if(favs.size() == 0)
             return favouritesRepository.save(favourite);
         else return favs.get(0);
@@ -31,7 +32,8 @@ public class FavouritesServiceImpl implements FavouritesService {
     @TrackExecutionTime
     @Override
     public void deleteById(Long id) {
-        log.info("Deleting favourite with id: "+id);
+        //TODO:
+//        log.info("Deleting favourite with id: " + id);
         favouritesRepository.deleteById(id);
     }
 }

@@ -21,10 +21,11 @@ public class AuthorServiceImpl implements AuthorService {
     @TrackExecutionTime
     @Override
     public Set<Author> getAuthors() {
-        log.info("Retrieving list of authors:");
+        //TODO
+//        log.info("Retrieving list of authors:");
         Set<Author> authors = new HashSet<Author>();
         authorRepository.findAll().iterator().forEachRemaining(authors::add);
-        authors.forEach(author -> log.info(author.getFirstLastName()));
+//        authors.forEach(author -> log.info(author.getFirstLastName()));
         return authors;
     }
 

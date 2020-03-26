@@ -1,4 +1,4 @@
-package apbdoo.onlineLib.aspects.service;
+package apbdoo.onlineLib.aspects;
 
 import apbdoo.onlineLib.domain.Book;
 import lombok.extern.slf4j.Slf4j;
@@ -34,14 +34,14 @@ public class BookServiceAspect {
     @Before("pointCutsSaveBook()")
     public void beforeSaveBookAdvice(JoinPoint joinPoint) {
         Book book = (Book) joinPoint.getArgs()[0];
-        log.info("Before: saving book '" + book.getTitle() + "' in:");
+        log.info("Before:");
         log.info("... " + joinPoint.getSignature());
     }
 
     @After("pointCutsSaveBook()")
     public void afterSaveBookAdvice(JoinPoint joinPoint) {
         Book book = (Book) joinPoint.getArgs()[0];
-        log.info("After: saving book '" + book.getTitle() + "' in:");
+        log.info("After: (saved ID: '" + book.getId() + ")");
         log.info("... " + joinPoint.getSignature());
     }
 }

@@ -30,7 +30,8 @@ public class ImageServiceImpl implements ImageService{
                 byteObjects[i++] = b;
             }
             book.setCover(byteObjects);
-            log.info("Saving cover image for book '"+book.getTitle()+"'");
+            //TODO:
+//            log.info("Saving cover image for book '"+book.getTitle()+"'");
             bookRepository.save(book); }
         catch (IOException e) {
         }

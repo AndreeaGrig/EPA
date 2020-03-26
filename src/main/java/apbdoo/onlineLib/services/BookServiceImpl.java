@@ -29,7 +29,8 @@ public class BookServiceImpl implements BookService {
         @TrackExecutionTime
         @Override
         public Set<Book> getBooks() {
-            log.info("Get all books sorted by add date descending!");
+            //TODO:
+//            log.info("Get all books sorted by add date descending!");
             Set<Book> books = new HashSet<Book>();
             bookRepository.findAll(Sort.by("addDate").descending()).iterator().forEachRemaining(books::add);
             books.forEach(book -> log.info(book.getTitle()));
@@ -43,7 +44,8 @@ public class BookServiceImpl implements BookService {
             Optional<Book> bookOptional = bookRepository.findById(l);
 
             if (!bookOptional.isPresent()) {
-                log.error("Book id not found: " + l);
+                //TODO:
+//                log.error("Book id not found: " + l);
                 throw new RuntimeException("Book not found!");
             }
 
@@ -60,14 +62,16 @@ public class BookServiceImpl implements BookService {
         @TrackExecutionTime
         @Override
         public void deleteBookById(Long id) {
-        log.info("Deleting book with id " + id + "from database");
+        //TODO:
+//        log.info("Deleting book with id " + id + "from database");
         bookRepository.deleteById(id);
         }
 
     @TrackExecutionTime
     @Override
     public Page<Book> getPage(Pageable pageable){
-        log.info("Display books from all categories.");
+        //TODO:
+//        log.info("Display books from all categories.");
         Page<Book> bookPage = bookRepository.findAll(pageable);
         bookPage.forEach(book -> log.info(book.getTitle()));
         return bookPage;
@@ -76,10 +80,11 @@ public class BookServiceImpl implements BookService {
     @TrackExecutionTime
     @Override
     public Page<Book> getCategoryPage(String category, Pageable pageable){
-        log.info("Display books from category "+category);
+        //TODO:
+//        log.info("Display books from category "+category);
         List<Book> books = bookRepository.findAllByCategory(Category.valueOf(category), pageable);
         Page<Book> bookPage =  new PageImpl<>(books, pageable, books.size());
-        bookPage.forEach(book->log.info(book.getTitle()));
+//        bookPage.forEach(book->log.info(book.getTitle()));
         return bookPage;
     }
 }
