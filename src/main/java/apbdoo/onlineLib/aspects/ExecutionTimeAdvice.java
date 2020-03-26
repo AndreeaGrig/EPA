@@ -25,8 +25,10 @@ public class ExecutionTimeAdvice {
         // we used ProceedingJoinPoint because we want to use @Around(before and after method execution)
         Object object = pjp.proceed();
         long endTime = System.currentTimeMillis();
+        log.info("=================== TIME EXECUTION ===================");
+        log.info("Class:  '" + pjp.getTarget().getClass() + "'");
         log.info("Method: '" + pjp.getSignature() + "'");
-        log.info("--- took " + (endTime - startTime) + "ms to execute.");
+        log.info("........................ " + (endTime - startTime) + "ms ........................");
         return object;
     }
 }

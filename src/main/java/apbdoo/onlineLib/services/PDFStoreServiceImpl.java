@@ -1,5 +1,6 @@
 package apbdoo.onlineLib.services;
 
+import apbdoo.onlineLib.aspects.TrackExecutionTime;
 import apbdoo.onlineLib.domain.Book;
 import apbdoo.onlineLib.repositories.BookRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,7 @@ public class PDFStoreServiceImpl implements PDFStoreService{
         this.bookRepository = bookRepository;
     }
 
+    @TrackExecutionTime
     @Override
     @Transactional
     public void savePdfFile(Long bookId, MultipartFile file) {

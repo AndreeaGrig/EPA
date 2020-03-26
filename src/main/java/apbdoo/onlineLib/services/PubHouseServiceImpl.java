@@ -1,5 +1,6 @@
 package apbdoo.onlineLib.services;
 
+import apbdoo.onlineLib.aspects.TrackExecutionTime;
 import apbdoo.onlineLib.domain.PubHouse;
 import apbdoo.onlineLib.repositories.PubHouseRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ public class PubHouseServiceImpl implements PubHouseService {
         this.pubHouseRepository = pubHouseRepository;
     }
 
+    @TrackExecutionTime
     @Override
     public Set<PubHouse> getPubHouses(){
         log.info("Retrieving list of publication houses:");

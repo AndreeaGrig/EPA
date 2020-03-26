@@ -32,7 +32,6 @@ public class AddBookController {
         this.pubHouseService = pubHouseService;
     }
 
-    @TrackExecutionTime
     @RequestMapping("/book/{id}/edit")
     public String editBookDetails(@PathVariable String id, Model model){
 
@@ -41,13 +40,11 @@ public class AddBookController {
         return "addbook";
     }
 
-    @TrackExecutionTime
     @ModelAttribute("allPubHouses")
     public Set<PubHouse> populatePubHouses() {
         return pubHouseService.getPubHouses();
     }
 
-    @TrackExecutionTime
     @ModelAttribute("allAuthors")
     public Set<Author> populateAuthors() {
         return authorService.getAuthors();
@@ -71,7 +68,6 @@ public class AddBookController {
         return "addbook";
     }
 
-    @TrackExecutionTime
     @PostMapping("/book/add")
     public String saveOrUpdate(@ModelAttribute("book") @Valid Book book,
                                BindingResult bindingResult,

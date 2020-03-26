@@ -1,5 +1,6 @@
 package apbdoo.onlineLib.services;
 
+import apbdoo.onlineLib.aspects.TrackExecutionTime;
 import apbdoo.onlineLib.domain.Book;
 import apbdoo.onlineLib.domain.Category;
 import apbdoo.onlineLib.repositories.BookRepository;
@@ -25,6 +26,7 @@ public class BookServiceImpl implements BookService {
             this.bookRepository = bookRepository;
         }
 
+        @TrackExecutionTime
         @Override
         public Set<Book> getBooks() {
             log.info("Get all books sorted by add date descending!");
@@ -34,6 +36,7 @@ public class BookServiceImpl implements BookService {
             return books;
         }
 
+        @TrackExecutionTime
         @Override
         public Book findBookById(Long l) {
 
@@ -47,19 +50,21 @@ public class BookServiceImpl implements BookService {
             return bookOptional.get();
         }
 
-
+        @TrackExecutionTime
         @Override
         public Book saveBook(Book book) {
             Book savedBook = bookRepository.save(book);
             return savedBook;
         }
 
+        @TrackExecutionTime
         @Override
         public void deleteBookById(Long id) {
         log.info("Deleting book with id " + id + "from database");
         bookRepository.deleteById(id);
         }
 
+    @TrackExecutionTime
     @Override
     public Page<Book> getPage(Pageable pageable){
         log.info("Display books from all categories.");
@@ -68,6 +73,7 @@ public class BookServiceImpl implements BookService {
         return bookPage;
     }
 
+    @TrackExecutionTime
     @Override
     public Page<Book> getCategoryPage(String category, Pageable pageable){
         log.info("Display books from category "+category);

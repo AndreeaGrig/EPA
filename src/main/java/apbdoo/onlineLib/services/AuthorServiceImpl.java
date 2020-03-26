@@ -1,5 +1,6 @@
 package apbdoo.onlineLib.services;
 
+import apbdoo.onlineLib.aspects.TrackExecutionTime;
 import apbdoo.onlineLib.domain.Author;
 import apbdoo.onlineLib.repositories.AuthorRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ public class AuthorServiceImpl implements AuthorService {
         this.authorRepository = authorRepository;
     }
 
+    @TrackExecutionTime
     @Override
     public Set<Author> getAuthors() {
         log.info("Retrieving list of authors:");

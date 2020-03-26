@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import apbdoo.onlineLib.aspects.TrackExecutionTime;
 import apbdoo.onlineLib.domain.Role;
 import apbdoo.onlineLib.domain.User;
 import apbdoo.onlineLib.repositories.RoleRepository;
@@ -33,12 +34,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @TrackExecutionTime
     @Override
     public User findByEmail(String email){
         log.info("Retrieve user with email: "+email);
         return userRepository.findByEmail(email);
     }
 
+    @TrackExecutionTime
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
@@ -57,7 +60,7 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
-
+    @TrackExecutionTime
     @Override
     public void save(User user) {
         log.info("Saving user with email "+user.getEmail()+" with role ROLE_USER");
@@ -67,6 +70,7 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @TrackExecutionTime
     @Override
     public User findByUsername(String username) {
         log.info("Retrieving user with username "+username);
