@@ -64,8 +64,8 @@ public class BookServiceAspect {
 
     @AfterReturning(value = "pointcutGetBooks()", returning = "returnValue")
     public void afterGetBooksAdvice(JoinPoint joinPoint, Object returnValue) {
-        Set returnedSet = (Set) returnValue;
-        log.info("AFTER: (Getting all books sorted)-> " + returnedSet.size() + " books");
+        Set booksSet = (Set) returnValue;
+        log.info("AFTER: (Getting all books sorted)-> '" + booksSet.size() + "' books");
         log.info("... " + joinPoint.getSignature());
     }
 
