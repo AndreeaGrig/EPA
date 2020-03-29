@@ -32,6 +32,8 @@
 
         <form th:object="${review}" th:action="@{/review/}" method="post">
             <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{dateCreated}"/>
+            <input type="hidden" th:field="*{createdByUser}"/>
             <input type="hidden" th:field="*{book.id}"/>
             <input type="hidden" th:field="*{user.id}"/>
             <div th:if="${#fields.hasErrors('text')}">

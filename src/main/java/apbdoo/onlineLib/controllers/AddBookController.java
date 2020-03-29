@@ -90,13 +90,16 @@ public class AddBookController {
             bindingResult.addError(new FieldError("book", "authors", "Required field!"));
         }
 
-        if(book.getBookInfo().getInfo()==null){
-            bindingResult.addError(new FieldError("book", "bookInfo", "Required field!"));
-        }
-        else{
-            String info = book.getBookInfo().getInfo().trim();
-            if(info.equals(""))
+        if(book.getBookInfo()!= null) {
+            if (book.getBookInfo().getInfo() == null)
                 bindingResult.addError(new FieldError("book", "bookInfo", "Required field!"));
+            else {
+                String info = book.getBookInfo().getInfo().trim();
+                if (info.equals(""))
+                    bindingResult.addError(new FieldError("book", "bookInfo", "Required field!"));
+            }
+        }else{
+            bindingResult.addError(new FieldError("book", "bookInfo", "Required field!"));
         }
 
         book.setAddDate(new Date());

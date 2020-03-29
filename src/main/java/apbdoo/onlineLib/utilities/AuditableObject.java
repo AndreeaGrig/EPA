@@ -1,11 +1,15 @@
 package apbdoo.onlineLib.utilities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @MappedSuperclass
 public abstract class AuditableObject implements Auditable<String> {
 
+    @DateTimeFormat(pattern = "dd-M-yyyy hh:mm:ss")
     private Date dateCreated;
     private String createdByUser;
     private Date dateLastModified;

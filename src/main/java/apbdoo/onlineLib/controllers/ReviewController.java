@@ -62,7 +62,7 @@ public class ReviewController {
         if(text.trim()==null || text.trim().equals(""))
             bindingResult.addError(new FieldError("review","text","You can't insert blank reviews!"));
         if (bindingResult.hasErrors()) {
-            return "addReview";
+                return "addReview";
         }
 
         Review savedCommand = reviewService.saveReview(review);
