@@ -69,8 +69,6 @@ public class UserServiceImpl implements UserService {
     @TrackExecutionTime
     @Override
     public User findByUsername(String username) {
-        //TODO:
-//        log.info("Retrieving user with username "+username);
         return userRepository.findByUsername(username);
     }
 }
