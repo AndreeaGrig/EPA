@@ -36,8 +36,6 @@ public class UserServiceImpl implements UserService {
     @TrackExecutionTime
     @Override
     public User findByEmail(String email){
-        //TODO:
-//        log.info("Retrieve user with email: "+email);
         return userRepository.findByEmail(email);
     }
 
@@ -46,8 +44,6 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
         if (user == null){
-            //TODO:
-//            log.error("User not found for email: "+email);
             throw new UsernameNotFoundException("Invalid username or password.");
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
@@ -64,8 +60,6 @@ public class UserServiceImpl implements UserService {
     @TrackExecutionTime
     @Override
     public void save(User user) {
-        //TODO:
-//        log.info("Saving user with email "+user.getEmail()+" with role ROLE_USER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role role = roleRepository.findByName("ROLE_USER");
         user.setRoles(Arrays.asList(role));

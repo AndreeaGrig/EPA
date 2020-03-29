@@ -23,29 +23,31 @@ import java.util.Set;
 public class BookAspect {
 
     /**
-     * Saving a book operation
+     * Getting book by id operation
      */
-    @Pointcut("execution(public * saveBook(..))")
-    public void pointcutSaveBook() {
+    @Pointcut("execution(public * apbdoo.onlineLib.services.BookServiceImpl.findBookById(..))")
+    public void pointcutGetOneBook() {
     }
 
-    @Before("pointcutSaveBook()")
-    public void beforeSaveBookAdvice(JoinPoint joinPoint) {
-        Book book = (Book) joinPoint.getArgs()[0];
-        log.info("BEFORE: (Saving book)-> Book: '" + book.getTitle() + "'");
+    @Before("pointcutGetOneBook()")
+    public void beforeGetOneBookAdvice(JoinPoint joinPoint) {
+        Long bookId = (Long) joinPoint.getArgs()[0];
+        log.info("BEFORE: (Getting the book)-> Book ID: " + bookId);
         log.info("... " + joinPoint.getSignature());
     }
 
-    @AfterReturning(value = "pointcutSaveBook()", returning = "returnValue")
-    public void afterSuccessSaveBookAdvice(JoinPoint joinPoint, Object returnValue) {
-        Book savedBook = (Book) returnValue;
-        log.info("AFTER: (Saving book)-> Book ID: " + savedBook.getId());
+    @AfterReturning(value = "pointcutGetOneBook()", returning = "returnValue")
+    public void afterGetOneBookSuccessAdvice(JoinPoint joinPoint, Object returnValue) {
+        Book returnedBook = (Book) returnValue;
+        log.info("AFTER: (Getting the book)-> Book ID: " + returnedBook.getId()
+                + ", Title: '" + returnedBook.getTitle() + "'");
         log.info("... " + joinPoint.getSignature());
     }
 
-    @AfterThrowing("pointcutSaveBook()")
-    public void afterFailSaveBookAdvice(JoinPoint joinPoint) {
-        log.error("AFTER: (Saving book)-> FAILED to execute!");
+    @AfterThrowing(value = "pointcutGetOneBook()")
+    public void afterGetOneBookFailAdvice(JoinPoint joinPoint) {
+        Long bookId = (Long) joinPoint.getArgs()[0];
+        log.error("AFTER: (Getting the book)-> Book ID: " + bookId + " not found-> FAILED!");
         log.error("... " + joinPoint.getSignature());
     }
 
@@ -76,31 +78,29 @@ public class BookAspect {
     }
 
     /**
-     * Getting book by id operation
+     * Saving a book operation
      */
-    @Pointcut("execution(public * apbdoo.onlineLib.services.BookServiceImpl.findBookById(..))")
-    public void pointcutGetOneBook() {
+    @Pointcut("execution(public * saveBook(..))")
+    public void pointcutSaveBook() {
     }
 
-    @Before("pointcutGetOneBook()")
-    public void beforeGetOneBookAdvice(JoinPoint joinPoint) {
-        Long bookId = (Long) joinPoint.getArgs()[0];
-        log.info("BEFORE: (Getting the book)-> Book ID: " + bookId);
+    @Before("pointcutSaveBook()")
+    public void beforeSaveBookAdvice(JoinPoint joinPoint) {
+        Book book = (Book) joinPoint.getArgs()[0];
+        log.info("BEFORE: (Saving book)-> Book: '" + book.getTitle() + "'");
         log.info("... " + joinPoint.getSignature());
     }
 
-    @AfterReturning(value = "pointcutGetOneBook()", returning = "returnValue")
-    public void afterGetOneBookSuccessAdvice(JoinPoint joinPoint, Object returnValue) {
-        Book returnedBook = (Book) returnValue;
-        log.info("AFTER: (Getting the book)-> Book ID: " + returnedBook.getId()
-                + ", Title: '" + returnedBook.getTitle() + "'");
+    @AfterReturning(value = "pointcutSaveBook()", returning = "returnValue")
+    public void afterSuccessSaveBookAdvice(JoinPoint joinPoint, Object returnValue) {
+        Book savedBook = (Book) returnValue;
+        log.info("AFTER: (Saving book)-> Book ID: " + savedBook.getId());
         log.info("... " + joinPoint.getSignature());
     }
 
-    @AfterThrowing(value = "pointcutGetOneBook()")
-    public void afterGetOneBookFailAdvice(JoinPoint joinPoint) {
-        Long bookId = (Long) joinPoint.getArgs()[0];
-        log.error("AFTER: (Getting the book)-> Book ID: " + bookId + " not found-> FAILED!");
+    @AfterThrowing("pointcutSaveBook()")
+    public void afterFailSaveBookAdvice(JoinPoint joinPoint) {
+        log.error("AFTER: (Saving book)-> FAILED to execute!");
         log.error("... " + joinPoint.getSignature());
     }
 
