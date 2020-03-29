@@ -1,5 +1,6 @@
 package apbdoo.onlineLib.domain;
 
+import apbdoo.onlineLib.utilities.AuditableObject;
 import lombok.Data;
 
 import javax.persistence.*;

@@ -1,5 +1,6 @@
 package apbdoo.onlineLib.domain;
 
+import apbdoo.onlineLib.utilities.AuditableObject;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +14,7 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
-public class Book {
+public class Book extends AuditableObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

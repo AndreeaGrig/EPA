@@ -39,7 +39,6 @@ public class ReviewController {
         String name = auth.getName();
         User user = userService.findByEmail(name);
         review.setUser(user);
-        review.setAddDate(new Date());
         reviewService.saveReview(review);
         review.setText("  ");
 
@@ -66,7 +65,6 @@ public class ReviewController {
             return "addReview";
         }
 
-        review.setLastEditDate(new Date());
         Review savedCommand = reviewService.saveReview(review);
 
         return "redirect:/book/details/"+review.getBook().getId();

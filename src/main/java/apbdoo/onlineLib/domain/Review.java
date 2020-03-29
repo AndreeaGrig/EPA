@@ -1,5 +1,6 @@
 package apbdoo.onlineLib.domain;
 
+import apbdoo.onlineLib.utilities.AuditableObject;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -13,15 +14,13 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class Review {
+public class Review extends AuditableObject{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String text;
-    private Date addDate;
-    private  Date lastEditDate;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Book book;
