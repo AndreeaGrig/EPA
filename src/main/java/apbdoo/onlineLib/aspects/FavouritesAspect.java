@@ -72,7 +72,7 @@ public class FavouritesAspect {
     @AfterThrowing(value = "pointcutDeleteFavouriteById()")
     public void afterDeleteFavouriteBookAdvice(JoinPoint joinPoint) {
         Long favouritesId = (Long) joinPoint.getArgs()[0];
-        log.error("AFTER: (Deleting book from favourites)-> Favourite ID: " + favouritesId + " not found-> Failed!");
+        log.error("AFTER: (Deleting book from favourites)-> Favourite ID: " + favouritesId + " not found-> FAILED!");
         log.error("... " + joinPoint.getSignature());
     }
 }

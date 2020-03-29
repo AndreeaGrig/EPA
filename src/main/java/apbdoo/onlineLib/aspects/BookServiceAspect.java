@@ -63,9 +63,15 @@ public class BookServiceAspect {
     }
 
     @AfterReturning(value = "pointcutGetBooks()", returning = "returnValue")
-    public void afterGetBooksAdvice(JoinPoint joinPoint, Object returnValue) {
+    public void afterGetBooksSuccessAdvice(JoinPoint joinPoint, Object returnValue) {
         Set booksSet = (Set) returnValue;
         log.info("AFTER: (Getting all books sorted)-> '" + booksSet.size() + "' books");
+        log.info("... " + joinPoint.getSignature());
+    }
+
+    @AfterThrowing("pointcutGetBooks()")
+    public void afterGetBooksFailAdvice(JoinPoint joinPoint) {
+        log.info("AFTER: (Getting all books sorted)-> FAILED to execute!");
         log.info("... " + joinPoint.getSignature());
     }
 
@@ -86,14 +92,15 @@ public class BookServiceAspect {
     @AfterReturning(value = "pointcutGetOneBook()", returning = "returnValue")
     public void afterGetOneBookSuccessAdvice(JoinPoint joinPoint, Object returnValue) {
         Book returnedBook = (Book) returnValue;
-        log.info("AFTER: (Getting the book)-> Book ID: " + returnedBook.getId() + ", Title: " + returnedBook.getTitle());
+        log.info(
+                "AFTER: (Getting the book)-> Book ID: " + returnedBook.getId() + ", Title: " + returnedBook.getTitle());
         log.info("... " + joinPoint.getSignature());
     }
 
     @AfterThrowing(value = "pointcutGetOneBook()")
     public void afterGetOneBookFailAdvice(JoinPoint joinPoint) {
         Long bookId = (Long) joinPoint.getArgs()[0];
-        log.error("AFTER: (Getting the book)-> Book ID: " + bookId + " not found-> Failed");
+        log.error("AFTER: (Getting the book)-> Book ID: " + bookId + " not found-> FAILED!");
         log.error("... " + joinPoint.getSignature());
     }
 
@@ -120,7 +127,7 @@ public class BookServiceAspect {
     @AfterThrowing(value = "pointcutDeletingBook()")
     public void afterDeleteBookAdvice(JoinPoint joinPoint) {
         Long bookId = (Long) joinPoint.getArgs()[0];
-        log.error("AFTER: (Deleting the book)-> Book ID: " + bookId + " not found-> Failed!");
+        log.error("AFTER: (Deleting the book)-> Book ID: " + bookId + " not found-> FAILED!");
         log.error("... " + joinPoint.getSignature());
     }
 

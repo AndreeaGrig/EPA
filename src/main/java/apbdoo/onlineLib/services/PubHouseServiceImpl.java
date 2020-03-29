@@ -22,8 +22,6 @@ public class PubHouseServiceImpl implements PubHouseService {
     @TrackExecutionTime
     @Override
     public Set<PubHouse> getPubHouses(){
-        //TODO:
-//        log.info("Retrieving list of publication houses:");
         Set<PubHouse> pubHouses = new HashSet<PubHouse>();
         pubHouseRepository.findAll().iterator().forEachRemaining(pubHouses::add);
 //        pubHouses.forEach(pubHouse -> log.info(pubHouse.getName()));
