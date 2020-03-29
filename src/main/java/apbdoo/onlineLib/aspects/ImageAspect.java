@@ -1,6 +1,5 @@
 package apbdoo.onlineLib.aspects;
 
-import apbdoo.onlineLib.domain.Book;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -30,14 +29,14 @@ public class ImageAspect {
     @Before("pointcutSaveImage()")
     public void beforeSaveImageAdvice(JoinPoint joinPoint) {
         Long bookId = (Long) joinPoint.getArgs()[0];
-        log.info("BEFORE: (Saving book cover image)-> book ID: " + bookId);
+        log.info("BEFORE: (Saving book cover image)-> Book ID: " + bookId);
         log.info("... " + joinPoint.getSignature());
     }
 
     @AfterReturning("pointcutSaveImage()")
     public void afterSuccessSaveImageAdvice(JoinPoint joinPoint) {
         Long bookId = (Long) joinPoint.getArgs()[0];
-        log.info("AFTER: (Saving book cover image)-> book ID: " + bookId);
+        log.info("AFTER: (Saving book cover image)-> Book ID: " + bookId);
         log.info("... " + joinPoint.getSignature());
     }
 

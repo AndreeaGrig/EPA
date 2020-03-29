@@ -65,7 +65,7 @@ public class FavouritesAspect {
 
     @AfterReturning(value = "pointcutDeleteFavouriteById()")
     public void afterDeleteFavouriteBookSuccessAdvice(JoinPoint joinPoint) {
-        log.info("AFTER: (Deleting book from favourites)-> Success!");
+        log.info("AFTER: (Deleting book from favourites)-> SUCCESS!");
         log.info("... " + joinPoint.getSignature());
     }
 

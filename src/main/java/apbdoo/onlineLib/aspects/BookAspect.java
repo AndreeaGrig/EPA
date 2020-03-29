@@ -20,7 +20,7 @@ import java.util.Set;
 @Aspect
 @Component
 @Slf4j
-public class BookServiceAspect {
+public class BookAspect {
 
     /**
      * Saving a book operation
@@ -32,14 +32,14 @@ public class BookServiceAspect {
     @Before("pointcutSaveBook()")
     public void beforeSaveBookAdvice(JoinPoint joinPoint) {
         Book book = (Book) joinPoint.getArgs()[0];
-        log.info("BEFORE: (Saving book)-> " + book.getTitle());
+        log.info("BEFORE: (Saving book)-> Book: '" + book.getTitle() + "'");
         log.info("... " + joinPoint.getSignature());
     }
 
-    @AfterReturning("pointcutSaveBook()")
-    public void afterSuccessSaveBookAdvice(JoinPoint joinPoint) {
-        Book book = (Book) joinPoint.getArgs()[0];
-        log.info("AFTER: (Saving book)-> Book ID: " + book.getId());
+    @AfterReturning(value = "pointcutSaveBook()", returning = "returnValue")
+    public void afterSuccessSaveBookAdvice(JoinPoint joinPoint, Object returnValue) {
+        Book savedBook = (Book) returnValue;
+        log.info("AFTER: (Saving book)-> Book ID: " + savedBook.getId());
         log.info("... " + joinPoint.getSignature());
     }
 
@@ -92,8 +92,8 @@ public class BookServiceAspect {
     @AfterReturning(value = "pointcutGetOneBook()", returning = "returnValue")
     public void afterGetOneBookSuccessAdvice(JoinPoint joinPoint, Object returnValue) {
         Book returnedBook = (Book) returnValue;
-        log.info(
-                "AFTER: (Getting the book)-> Book ID: " + returnedBook.getId() + ", Title: " + returnedBook.getTitle());
+        log.info("AFTER: (Getting the book)-> Book ID: " + returnedBook.getId()
+                + ", Title: '" + returnedBook.getTitle() + "'");
         log.info("... " + joinPoint.getSignature());
     }
 
@@ -120,12 +120,12 @@ public class BookServiceAspect {
 
     @AfterReturning(value = "pointcutDeletingBook()")
     public void afterDeleteBookSuccessAdvice(JoinPoint joinPoint) {
-        log.info("AFTER: (Deleting the book)-> Success!");
+        log.info("AFTER: (Deleting the book)-> SUCCESS!");
         log.info("... " + joinPoint.getSignature());
     }
 
     @AfterThrowing(value = "pointcutDeletingBook()")
-    public void afterDeleteBookAdvice(JoinPoint joinPoint) {
+    public void afterDeleteBookFailAdvice(JoinPoint joinPoint) {
         Long bookId = (Long) joinPoint.getArgs()[0];
         log.error("AFTER: (Deleting the book)-> Book ID: " + bookId + " not found-> FAILED!");
         log.error("... " + joinPoint.getSignature());
@@ -146,7 +146,7 @@ public class BookServiceAspect {
 
     @AfterReturning("pointcutGetBooksPage()")
     public void afterGetBooksPageAdvice(JoinPoint joinPoint) {
-        log.info("AFTER: (Getting the books from all categories)-> Success!");
+        log.info("AFTER: (Getting the books from all categories)-> SUCCESS!");
         log.info("... " + joinPoint.getSignature());
     }
 
@@ -167,7 +167,7 @@ public class BookServiceAspect {
     @AfterReturning("pointcutGetCategoryPage()")
     public void afterGetCategoryPageAdvice(JoinPoint joinPoint) {
         String category = joinPoint.getArgs()[0].toString();
-        log.info("AFTER: (Getting books from category)-> ID: " + category + "-> Success!");
+        log.info("AFTER: (Getting books from category)-> ID: " + category + "-> SUCCESS!");
         log.info("... " + joinPoint.getSignature());
     }
 }

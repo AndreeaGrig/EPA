@@ -1,6 +1,5 @@
 package apbdoo.onlineLib.aspects;
 
-import apbdoo.onlineLib.domain.Book;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -30,19 +29,19 @@ public class PDFStoreAspect {
     @Before("pointcutSaveBookPDF()")
     public void beforeSaveBookPDFAdvice(JoinPoint joinPoint) {
         Long bookId = (Long) joinPoint.getArgs()[0];
-        log.info("BEFORE: (Saving book PDF)-> book ID: " + bookId);
+        log.info("BEFORE: (Saving book PDF)-> Book ID: " + bookId);
         log.info("... " + joinPoint.getSignature());
     }
 
     @AfterReturning("pointcutSaveBookPDF()")
     public void afterSuccessSaveBookPDFAdvice(JoinPoint joinPoint) {
         Long bookId = (Long) joinPoint.getArgs()[0];
-        log.info("AFTER: (Saving book PDF)-> book ID: " + bookId);
+        log.info("AFTER: (Saving book PDF)-> Book ID: " + bookId);
         log.info("... " + joinPoint.getSignature());
     }
 
     @AfterThrowing("pointcutSaveBookPDF()")
-    public void afterFailSaveBookAdvice(JoinPoint joinPoint) {
+    public void afterFailSaveBookPDFAdvice(JoinPoint joinPoint) {
         log.error("AFTER: (Saving book PDF)-> FAILED to execute!");
         log.error("... " + joinPoint.getSignature());
     }

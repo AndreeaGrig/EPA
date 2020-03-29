@@ -1,4 +1,4 @@
-package apbdoo.onlineLib.aspects;
+package apbdoo.onlineLib.aspects.executiontime;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -21,7 +21,7 @@ public class ExecutionTimeAdvice {
     /**
      * Method for logging the time of any method with @TrackTime annotation
      */
-    @Around("@annotation(apbdoo.onlineLib.aspects.TrackExecutionTime)")// usually we are attaching the pointcuts, this time we create an annotation for that
+    @Around("@annotation(apbdoo.onlineLib.aspects.executiontime.TrackExecutionTime)")// usually we are attaching the pointcuts, this time we create an annotation for that
     public Object logExecutionTime(ProceedingJoinPoint pjp) throws Throwable {
         long startTime = System.currentTimeMillis();
         // we used ProceedingJoinPoint because we want to use @Around(before and after method execution)
