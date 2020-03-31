@@ -21,4 +21,13 @@ public class Favourites {
     @ManyToOne(cascade = CascadeType.REFRESH)
     private User userFav;
 
+    @Override
+    public String toString() {
+        return "Favourites{" +
+                "id=" + id +
+                ", date=" + date +
+                ", bookFav=" + bookFav +
+                ", userFav=" + userFav +
+                '}';
+    }
 }

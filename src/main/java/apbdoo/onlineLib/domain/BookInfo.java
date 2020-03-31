@@ -1,9 +1,13 @@
 package apbdoo.onlineLib.domain;
 
-import apbdoo.onlineLib.utilities.AuditableObject;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -20,4 +24,11 @@ public class BookInfo {
     @NotEmpty
     private String info;
 
+    @Override
+    public String toString() {
+        return "BookInfo{" +
+                "id=" + id +
+                ", info='" + info + '\'' +
+                '}';
+    }
 }

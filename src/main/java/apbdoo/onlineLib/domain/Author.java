@@ -30,4 +30,14 @@ public class Author {
     public String getFirstLastName(){
         return this.firstName+" "+this.lastName;
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", nationality='" + nationality + '\'' +
+                '}';
+    }
 }

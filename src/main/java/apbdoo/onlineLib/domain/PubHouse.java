@@ -21,5 +21,12 @@ public class PubHouse {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pubHouse", fetch = FetchType.EAGER)
     private Set<Book> books = new HashSet<Book>();
 
-
+    @Override
+    public String toString() {
+        return "PubHouse{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }

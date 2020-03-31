@@ -28,5 +28,13 @@ public class Review extends AuditableObject{
     @ManyToOne(cascade = CascadeType.REFRESH)
     private User user;
 
-
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", book=" + book +
+                ", user=" + user +
+                '}';
+    }
 }
