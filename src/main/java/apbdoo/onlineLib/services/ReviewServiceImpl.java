@@ -1,6 +1,6 @@
 package apbdoo.onlineLib.services;
 
-import apbdoo.onlineLib.aspects.TrackExecutionTime;
+import apbdoo.onlineLib.aspects.executiontime.TrackExecutionTime;
 import apbdoo.onlineLib.domain.Review;
 import apbdoo.onlineLib.repositories.ReviewRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -20,8 +20,6 @@ public class ReviewServiceImpl implements ReviewService {
     @TrackExecutionTime
     @Override
     public Review saveReview(Review review) {
-        //TODO:
-//        log.info("Saving "+review.getUser().getUsername()+"'s review for book "+review.getBook().getTitle());
         Review savedReview = reviewRepository.save(review);
         return savedReview;
     }
@@ -29,8 +27,6 @@ public class ReviewServiceImpl implements ReviewService {
     @TrackExecutionTime
     @Override
     public void deleteById(Long id) {
-        //TODO:
-//        log.info("Deleting review with id: "+id);
         reviewRepository.deleteById(id);
     }
 

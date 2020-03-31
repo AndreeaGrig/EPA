@@ -1,6 +1,6 @@
 package apbdoo.onlineLib.services;
 
-import apbdoo.onlineLib.aspects.TrackExecutionTime;
+import apbdoo.onlineLib.aspects.executiontime.TrackExecutionTime;
 import apbdoo.onlineLib.domain.Book;
 import apbdoo.onlineLib.domain.Category;
 import apbdoo.onlineLib.repositories.BookRepository;
@@ -31,7 +31,6 @@ public class BookServiceImpl implements BookService {
         public Set<Book> getBooks() {
             Set<Book> books = new HashSet<Book>();
             bookRepository.findAll(Sort.by("addDate").descending()).iterator().forEachRemaining(books::add);
-            books.forEach(book -> log.info(book.getTitle()));
             return books;
         }
 

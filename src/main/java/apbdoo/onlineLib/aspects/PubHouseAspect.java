@@ -29,13 +29,13 @@ public class PubHouseAspect {
     }
 
     @Before("pointcutGetPubHouses()")
-    public void beforeGetBooksAdvice(JoinPoint joinPoint) {
+    public void beforeGetPubHousesAdvice(JoinPoint joinPoint) {
         log.info("BEFORE: (Getting all publication houses)");
         log.info("... " + joinPoint.getSignature());
     }
 
     @AfterReturning(value = "pointcutGetPubHouses()", returning = "returnValue")
-    public void afterGetBooksSuccessAdvice(JoinPoint joinPoint, Object returnValue) {
+    public void afterGetPubHousesSuccessAdvice(JoinPoint joinPoint, Object returnValue) {
         Set pubHousesSet = (Set) returnValue;
         log.info("AFTER: (Getting all publication houses)-> '" + pubHousesSet.size() + "' publication houses");
         log.info("... " + joinPoint.getSignature());
