@@ -55,7 +55,7 @@ public class ServiceLoggingAspect {
     }
 
     @AfterThrowing(value = "pointcutServices()", throwing = "ex")
-    public void afterFailSaveBookAdvice(JoinPoint joinPoint, Exception ex) {
+    public void afterFailMethodCallAdvice(JoinPoint joinPoint, Exception ex) {
         log.error("AFTER: " + joinPoint.getSignature());
         Object[] params = joinPoint.getArgs();
         if (!ObjectUtils.isEmpty(params)) {
