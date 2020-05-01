@@ -6,6 +6,7 @@ import apbdoo.onlineLib.services.AuthorService;
 import apbdoo.onlineLib.services.BookService;
 import apbdoo.onlineLib.services.PubHouseService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
+@Transactional
 public class AddBookController {
 
 
