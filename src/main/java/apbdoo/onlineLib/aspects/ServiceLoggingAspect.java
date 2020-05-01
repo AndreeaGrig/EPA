@@ -31,6 +31,7 @@ public class ServiceLoggingAspect {
     public void pointcutServices() {
     }
 
+    // Before method call logging
     @Before("pointcutServices()")
     public void beforeMethodCallAdvice(JoinPoint joinPoint) {
         log.info("BEFORE:  " + joinPoint.getSignature());
@@ -40,6 +41,7 @@ public class ServiceLoggingAspect {
         }
     }
 
+    // After Success method call logging
     @AfterReturning(value = "pointcutServices()", returning = "returnValue")
     public void afterSuccessMethodCallAdvice(JoinPoint joinPoint, Object returnValue) {
         log.info("AFTER: " + joinPoint.getSignature());
@@ -54,6 +56,7 @@ public class ServiceLoggingAspect {
         }
     }
 
+    // After Failed method call logging
     @AfterThrowing(value = "pointcutServices()", throwing = "ex")
     public void afterFailMethodCallAdvice(JoinPoint joinPoint, Exception ex) {
         log.error("AFTER: " + joinPoint.getSignature());
