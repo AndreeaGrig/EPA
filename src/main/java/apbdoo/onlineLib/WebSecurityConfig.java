@@ -28,22 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .and().authorizeRequests()
-                .antMatchers("/registration/**",
-                        "/books/**",
-                        "/book/details/**",
-                        "/js/**",
-                        "/css/**",
-                        "/images/**",
-                        "/pdfs/**",
-                        "/**/cover/**",
-                        "/webjars/**").permitAll()
-                .and().authorizeRequests()
-                .antMatchers( "/mybooks").hasAuthority("ROLE_USER")
-                .antMatchers("/book/add","/book/**/image","/book/**/uploadPDF","/book/**/edit").hasAuthority("ROLE_ADMIN")
-                .and().authorizeRequests()
-                .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
                 .accessDeniedPage("/accessDenied").and()
