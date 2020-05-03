@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Order(2)
 @Component
 @Slf4j
-public class ExecutionTimeAdvice {
+public class ExecutionTimeAspect {
 
     /**
      * Method for logging the time of any method with @TrackTime annotation
@@ -25,6 +25,7 @@ public class ExecutionTimeAdvice {
     public Object logExecutionTime(ProceedingJoinPoint pjp) throws Throwable {
         long startTime = System.currentTimeMillis();
         // we used ProceedingJoinPoint because we want to use @Around(before and after method execution)
+        // but it could be implemented also with @Before and @After
         Object object = pjp.proceed();
         long endTime = System.currentTimeMillis();
         log.info("=================== TIME EXECUTION ===================");
