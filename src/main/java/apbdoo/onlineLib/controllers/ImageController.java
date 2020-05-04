@@ -28,7 +28,7 @@ public class ImageController {
     }
 
     @GetMapping("book/{id}/image")
-    public String showUploadForm(@PathVariable String id, Model model) {
+    public String showUploadForm(Model model, @PathVariable String id) {
         model.addAttribute("book", bookService.findBookById(Long.valueOf(id)));
         return "imageform";
     }

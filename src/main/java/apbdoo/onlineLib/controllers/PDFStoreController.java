@@ -25,7 +25,7 @@ public class PDFStoreController {
 
 
     @GetMapping("book/{id}/uploadPDF")
-    public String showUploadForm(@PathVariable String id, Model model){
+    public String showUploadForm(Model model, @PathVariable String id){
         model.addAttribute("book", bookService.findBookById(Long.valueOf(id)));
         return "pdfForm"; }
 

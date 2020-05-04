@@ -35,7 +35,7 @@ public class AddBookController {
     }
 
     @RequestMapping("/book/{id}/edit")
-    public String editBookDetails(@PathVariable String id, Model model){
+    public String editBookDetails(Model model,@PathVariable String id){
 
         model.addAttribute("book", bookService.findBookById(new Long(id)));
 

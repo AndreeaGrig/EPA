@@ -13,11 +13,11 @@
 
     <div id="navbar">
       <a style="font-family: 'Amarante';" th:href="@{'/'}"><span class="glyphicon glyphicon-home"></span> Home</a>
-        <span sec:authorize="isAuthenticated()"> <a style="float: right;font-family: 'Amarante';"><span class="glyphicon glyphicon-on">Hello, </span> <span sec:authentication="name">Username</span> </a></span>
-        <span sec:authorize="isAuthenticated()"><a style="float: right;font-family: 'Amarante';" th:href="@{'/logout'}"><span class="glyphicon glyphicon-off"></span> Logout</a></span>
-        <span sec:authorize="hasRole('ROLE_ADMIN')"><a style="float: right;font-family: 'Amarante';" th:href="@{'/book/add'}"><span class="glyphicon glyphicon-book"></span> Add book</a></span>
-        <span sec:authorize="hasRole('ROLE_USER')"><a style="float: right;font-family: 'Amarante';" th:href="@{'/mybooks'}"><span class="glyphicon glyphicon-star"></span> My books</a></span>
-        <span sec:authorize="!isAuthenticated()">
+        <span th:if="${isAuthenticated}"> <a style="float: right;font-family: 'Amarante';"><span class="glyphicon glyphicon-on">Hello, </span> <span sec:authentication="name">Username</span> </a></span>
+        <span th:if="${isAuthenticated}"><a style="float: right;font-family: 'Amarante';" th:href="@{'/logout'}"><span class="glyphicon glyphicon-off"></span> Logout</a></span>
+        <span th:if="${isAdmin}"><a style="float: right;font-family: 'Amarante';" th:href="@{'/book/add'}"><span class="glyphicon glyphicon-book"></span> Add book</a></span>
+        <span th:if="${isLoggedUser}"><a style="float: right;font-family: 'Amarante';" th:href="@{'/mybooks'}"><span class="glyphicon glyphicon-star"></span> My books</a></span>
+        <span th:if="${!isAuthenticated}">
             <a style="float: right;font-family: 'Amarante';" th:href="@{'/login'}"><span class="glyphicon glyphicon-user"></span> Login</a>
             <a style="float: right;font-family: 'Amarante';" th:href="@{'/registration'}"><span class="glyphicon glyphicon-user"></span> SignUp</a>
         </span>

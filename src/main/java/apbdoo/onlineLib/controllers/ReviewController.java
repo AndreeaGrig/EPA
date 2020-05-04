@@ -30,7 +30,7 @@ public class ReviewController {
     private UserService userService;
 
     @RequestMapping("/book/{id}/addreview")
-    public String addReview(@PathVariable String id, Model model){
+    public String addReview(Model model, @PathVariable String id){
         Review review = new Review();
         Book book = bookService.findBookById(Long.valueOf(id));
         review.setBook(book);
@@ -48,8 +48,9 @@ public class ReviewController {
     }
 
     @GetMapping("book/{bookId}/review/{id}/update")
-    public String updateReviewContent(@PathVariable String bookId,
-                                       @PathVariable String id, Model model){
+    public String updateReviewContent(Model model,
+                                      @PathVariable String bookId,
+                                      @PathVariable String id){
         model.addAttribute("review", reviewService.findById(Long.valueOf(id)));
 
         return "addreview";

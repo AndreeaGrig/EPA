@@ -49,12 +49,12 @@
         </div>
 
         <div class="col-sm-4" style="padding-top: 100px;font-family: 'Chenla';font-size: 15px;">
-            <span sec:authorize="hasRole('ROLE_USER')">
+            <span th:if="${isLoggedUser}">
             <a style="color: #ffd734;font-size: 40px;" th:href="@{'/book/' + ${book.id} +'/addtomybooks'}" title="Add to my books">
                 <span class="glyphicon glyphicon-star"></span>
             </a>
             </span>
-            <span sec:authorize="hasRole('ROLE_ADMIN')">
+            <span th:if="${isAdmin}">
             <a style="margin-left: 100%;color: #3c763d;font-size: 40px;" th:href="@{'/book/' + ${book.id} +'/edit'}" title="Edit book details">
                 <span class="glyphicon glyphicon-pencil"></span>
             </a>
@@ -71,7 +71,7 @@
                 <li> <strong>Description: </strong><span th:text="${book.bookInfo.info}"></span> </li>
             </ul>
         </div>
-        <span sec:authorize="hasRole('ROLE_USER')">
+        <span th:if="${isLoggedUser}">
         <div class="col-sm-4" style="margin-top: 20px;border: solid black 1px;padding-top: 20px;padding-bottom: 20px;padding-left: 25px;padding-right: 25px; ">
             <p style="font-family: 'Abril Fatface';font-size: 22px;color: #778899;">Most appreciated by users...</p>
             <a th:each="rbook : ${rbooks}" style="padding: 5px;" th:href="@{'/book/details/'+ ${rbook.id}}"><img class="img-thumbnail" style="margin-bottom:10px;width:100px;height:150px" th:src="@{'/book/' + ${rbook.id} + '/cover'}" alt="Image"></a>
@@ -86,7 +86,7 @@
         <hr/>
         <div class="row" style="text-align: center; margin-bottom: 20px;">
 
-            <span sec:authorize="isAuthenticated()">
+            <span th:if="${isAuthenticated}">
                 <a th:href="@{'/book/' + ${book.id}+'/addreview'}">
                     <button class="fancyBB">
                         Leave a review
@@ -111,7 +111,7 @@
 
                     </div>
                     <div class="col-sm-1">
-                        <div sec:authorize="isAuthenticated()" th:with="condition=${#request.userPrincipal.name==review.user.email}" th:remove="tag">
+                        <div th:if="${isAuthenticated}" th:with="condition=${#request.userPrincipal.name==review.user.email}" th:remove="tag">
                         <a th:if="${condition}" th:href="@{ '/book/'+ ${review.book.id} + '/review/'+ ${review.id} + '/delete'}" >
                             <span style="color: black;font-size: 20px;" class="glyphicon glyphicon-trash"></span>
                         </a><br/><br/>

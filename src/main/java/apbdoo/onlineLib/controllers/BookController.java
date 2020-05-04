@@ -39,7 +39,7 @@ public class BookController {
     }
 
     @RequestMapping("/book/details/{id}")
-    public String showBookById(@PathVariable String id, Model model){
+    public String showBookById(Model model, @PathVariable String id){
 
         model.addAttribute("book", bookService.findBookById(new Long(id)));
 
@@ -55,7 +55,7 @@ public class BookController {
     }
 
     @RequestMapping("/books/{category}")
-    public String showBooksByCategory(@PathVariable String category, Model model){
+    public String showBooksByCategory(Model model, @PathVariable String category){
 
         model.addAttribute("books", bookService.getBooks());
 
