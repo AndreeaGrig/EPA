@@ -44,7 +44,7 @@ public class ServiceLoggingAspect {
     // After Success method call logging
     @AfterReturning(value = "pointcutServices()", returning = "returnValue")
     public void afterSuccessMethodCallAdvice(JoinPoint joinPoint, Object returnValue) {
-        log.info("AFTER: " + joinPoint.getSignature());
+        log.info("AFTER:   " + joinPoint.getSignature());
         if (returnValue instanceof Set) {
             log.info(".......... Count= ' " + ((Set) returnValue).size() + " ' elements");
         } else if (returnValue instanceof List) {

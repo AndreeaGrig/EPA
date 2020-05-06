@@ -21,16 +21,17 @@ public class ExecutionTimeAdvice {
     /**
      * Method for logging the time of any method with @TrackTime annotation
      */
-    @Around("@annotation(apbdoo.onlineLib.aspects.executiontime.TrackExecutionTime)")// usually we are attaching the pointcuts, this time we create an annotation for that
+    // usually we are attaching the pointcuts, this time we create an annotation for that
+    @Around("@annotation(apbdoo.onlineLib.aspects.executiontime.TrackExecutionTime)")
     public Object logExecutionTime(ProceedingJoinPoint pjp) throws Throwable {
         long startTime = System.currentTimeMillis();
-        // we used ProceedingJoinPoint because we want to use @Around(before and after method execution)
+        // we used ProceedingJoinPoint because we want to use @Around (before and after method execution)
+        // we could also use @Before and @After, but this way is more clean, the before operation is only for saving the startTime
         Object object = pjp.proceed();
         long endTime = System.currentTimeMillis();
         log.info("=================== TIME EXECUTION ===================");
-        log.info("Class:  '" + pjp.getTarget().getClass() + "'");
-        log.info("Method: '" + pjp.getSignature() + "'");
-        log.info("........................ " + (endTime - startTime) + "ms ........................");
+        log.info("--> method: '" + pjp.getSignature() + "'");
+        log.info("........................ " + (endTime - startTime) + "ms ........................\n");
         return object;
     }
 }
