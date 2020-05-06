@@ -35,11 +35,7 @@ public class ReviewServiceImpl implements ReviewService {
     public Review findById(Long id) {
 
         Optional<Review> reviewOptional = reviewRepository.findById(id);
-        //TODO:
-//        log.info("Retrieving review with id: "+id);
         if (!reviewOptional.isPresent()) {
-            //TODO:
-//            log.error("Review with id "+id+" not found!");
             throw new RuntimeException("Review not found!");
         }
 
