@@ -46,24 +46,24 @@ public class ServiceLoggingAspect {
     public void afterSuccessMethodCallAdvice(JoinPoint joinPoint, Object returnValue) {
         log.info("AFTER:   " + joinPoint.getSignature());
         if (returnValue instanceof Set) {
-            log.info(".......... Count= ' " + ((Set) returnValue).size() + " ' elements");
+            log.info("..........  Count= ' " + ((Set) returnValue).size() + " ' elements");
         } else if (returnValue instanceof List) {
-            log.info(".......... Count= ' " + ((List) returnValue).size() + " ' elements");
+            log.info("..........  Count= ' " + ((List) returnValue).size() + " ' elements");
         } else if (!ObjectUtils.isEmpty(returnValue)) {
-            log.info(".......... Returned= ' " + returnValue.toString() + " '");
+            log.info("..........  Returned= ' " + returnValue.toString() + " '");
         } else {
-            log.info(".......... SUCCESS!");
+            log.info("..........  SUCCESS!");
         }
     }
 
     // After Failed method call logging
     @AfterThrowing(value = "pointcutServices()", throwing = "ex")
     public void afterFailMethodCallAdvice(JoinPoint joinPoint, Exception ex) {
-        log.error("AFTER: " + joinPoint.getSignature());
+        log.error("AFTER:   " + joinPoint.getSignature());
         Object[] params = joinPoint.getArgs();
         if (!ObjectUtils.isEmpty(params)) {
             log.error("..........  Param value= ' " + params[0].toString() + " '");
         }
-        log.error(".......... FAILED! Message= ' " + ex.getMessage() + " '");
+        log.error("..........  FAILED! Message= ' " + ex.getMessage() + " '");
     }
 }

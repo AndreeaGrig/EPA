@@ -30,7 +30,7 @@ public class ExecutionTimeAdvice {
         Object object = pjp.proceed();
         long endTime = System.currentTimeMillis();
         log.info("=================== TIME EXECUTION ===================");
-        log.info("--> method: '" + pjp.getSignature() + "'");
+        log.info("-> method: '" + pjp.getSignature() + "'");
         log.info("........................ " + (endTime - startTime) + "ms ........................\n");
         return object;
     }
